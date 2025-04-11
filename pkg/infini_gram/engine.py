@@ -1,8 +1,8 @@
 import sys
 from typing import Iterable, List, Optional, Tuple
 
-from .models import *
-from . import cpp_engine
+from infini_gram.models import *
+from infini_gram import cpp_engine
 
 class InfiniGramEngine:
 
