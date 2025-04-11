@@ -11,6 +11,10 @@ import shutil
 import sys
 import time
 from tqdm import tqdm
+from dotenv import load_dotenv
+from pathlib import Path
+
+load_dotenv()
 
 HACK = 100000
 
@@ -139,14 +143,14 @@ def tokenize(args):
 
 def build_sa(args):
 
-    ds_paths = [os.path.join(args.save_dir, f'tokenized.{i}') for i in range(args.worker_id, args.shards, args.workers)]
+    ds_paths = [Path(Path.cwd(), args.save_dir, f'tokenized.{i}') for i in range(args.worker_id, args.shards, args.workers)]
 
     os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
     for t, ds_path in enumerate(ds_paths):
         print(f'Shard {t} / {len(ds_paths)}', flush=True)
 
-        sa_path = ds_path.replace('tokenized', 'table')
+        sa_path = str(ds_path).replace('tokenized', 'table')
         if os.path.exists(sa_path):
             print(f'Step 2 (build_sa): Skipped. File already exists.', flush=True)
             continue
