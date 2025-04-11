@@ -76,5 +76,17 @@ setup(
     # include_package_data=True,
     license='Apache 2.0',
     python_requires='>=3.11',
-    install_requires=['tqdm'],
+    install_requires=[
+        'tqdm', 
+        'numpy',
+        'transformers',
+        
+        # Required for using olmo tokenizer
+        'ai2-olmo',
+
+        # Required for using llama tokenizer
+        'python_dotenv',
+        'sentencepiece',
+        'protobuf'
+    ],
 )

@@ -10,6 +10,26 @@ To learn more about infini-gram:
 * Python Package: <https://pypi.org/project/infini-gram>
 * Code: <https://github.com/liujch1998/infini-gram>
 
+## Building Custom Index
+
+```bash
+cd pkg
+
+# Install Rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+source "$HOME/.cargo/env"
+
+# Go to `pkg/` and compile the Rust indexing code, and move the executable to the correct place:
+cargo build --release
+mv target/release/rust_indexing infini_gram/
+
+# Install the python `infini_gram` package
+pip install -e .
+
+# Run the indexing script
+python -m infini_gram.indexing --data_dir ... --save_dir ...
+```
+
 ## Citation
 
 If you find infini-gram useful, please kindly cite our paper:
